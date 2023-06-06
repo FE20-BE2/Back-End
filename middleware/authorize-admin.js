@@ -1,3 +1,5 @@
+const User = require('../models/user')
+
 const authorizeAdmin = (req, res, next) => {
   User.findById(req.userId)
     .then(user => {
