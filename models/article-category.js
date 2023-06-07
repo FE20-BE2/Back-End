@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const articleCategorySchema = new mongoose.Schema({
-    category_name: {
+    categoryName: {
       type: String,
       required: true
     },
-    created_by: {
+    createdBy: {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'User'
     },  
