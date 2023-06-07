@@ -1,3 +1,4 @@
+const authorizeAdmin = require('../middleware/authorize-admin');
 const userModel = require('../models/user');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -58,3 +59,5 @@ exports.register = async (req, res) => {
     }
   };
   
+
+  exports.register = [authorizeAdmin, exports.register];
