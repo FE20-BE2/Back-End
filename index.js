@@ -1,7 +1,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/user-routes')
-const articleRoutes = require('./routes/admin/article-category-router')
+const articleRoutes = require('./routes/admin/article-router')
+const articleCategoryRoutes = require('./routes/admin/article-category-router')
 
 require('dotenv').config();
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 // routes
 app.use('/api/users', userRoutes);
 app.use('/api/articles', articleRoutes)
+app.use('/api/article-categories', articleCategoryRoutes)
 
 
 app.get('/', (req, res) => {
