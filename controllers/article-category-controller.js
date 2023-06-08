@@ -1,9 +1,9 @@
-const Article = require('../models/article-category')
+const ArticleCategory = require('../models/article-category')
 
 module.exports = {
     getAllArticleCategories: async (req, res) => {
         try {
-            const articleCategories = await Article.find()
+            const articleCategories = await ArticleCategory.find()
             res.status(200).json({ status: 'Success', data: articleCategories})
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
@@ -13,7 +13,7 @@ module.exports = {
     getArticleCategoryById: async (req, res) => {
         try {
             const articleCategoryId = req.params.id
-            const detailArticleCategory = await Article.findOne({ _id: articleCategoryId})
+            const detailArticleCategory = await ArticleCategory.findOne({ _id: articleCategoryId})
 
             if (!detailArticleCategory) {
                 return res.status(404).json({ message: 'Article category not found' })
@@ -29,12 +29,12 @@ module.exports = {
         try {
             const { categoryName } = req.body
 
-            const existingCategory = await Article.findOne({ categoryName })
+            const existingCategory = await ArticleCategory.findOne({ categoryName })
             if (existingCategory) {
                 return res.status(409).json({ message: 'Category already existed' })
             }
 
-            const newArticleCategory = new Article({
+            const newArticleCategory = new ArticleCategory ({
                 categoryName,
                 createdBy: req.user.userId
             })
@@ -52,7 +52,7 @@ module.exports = {
             const articleCategoryId = req.params.id
             const { categoryName } = req.body
 
-            const articleCategory = await Article.findOne({ _id: articleCategoryId })
+            const articleCategory = await ArticleCategory.findOne({ _id: articleCategoryId })
 
             if (!articleCategory) {
                 return res.status(404).json({ message: 'Article category not found' })
@@ -61,7 +61,7 @@ module.exports = {
             articleCategory.categoryName = categoryName
             await articleCategory.save()
 
-            res.status(200).json({ status: 'Success', data: articleCategory})
+            res.status(200).json({ status: 'Success', message: 'Article Category updated successfully', data: articleCategory})
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
         }
@@ -70,7 +70,7 @@ module.exports = {
     deleteArticleCategoryById: async (req, res) => {
         try {
             const articleCategoryId = req.params.id
-            const articleCategory = await Article.findOneAndDelete({ _id: articleCategoryId})
+            const articleCategory = await ArticleCategory.findOneAndDelete({ _id: articleCategoryId})
 
             if (!articleCategory) {
                 return res.status(404).json({ message: 'Article category not found' })
