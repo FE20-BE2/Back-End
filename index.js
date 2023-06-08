@@ -1,8 +1,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/user-routes')
-const articleRoutes = require('./routes/admin/article-router')
-const articleCategoryRoutes = require('./routes/admin/article-category-router')
+const publicRoutes = require('./routes/public/public')
+const adminRoutes = require('./routes/admin/admin')
 
 require('dotenv').config();
 
@@ -15,9 +15,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // routes
 app.use('/api/users', userRoutes);
-app.use('/api/articles', articleRoutes)
-app.use('/api/article-categories', articleCategoryRoutes)
-
+app.use(publicRoutes)
+app.use(adminRoutes)
 
 app.get('/', (req, res) => {
   res.send('<h1>Halo, Selamat Datang!</h1>');
