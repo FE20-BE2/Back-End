@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res) => {
-    const { username, email, password, role } = req.body;
-  
-    try {
+  try {
+      const { username, email, password, role } = req.body;
+
       const existingUser = await userModel.findOne({ email });
       if (existingUser) {
         return res.status(409).json({ message: 'Email already registered' });
@@ -22,14 +22,12 @@ exports.register = async (req, res) => {
         username,
         email,
         password: hashedPassword,
-        role: role || 'user'
+        role
       });
-  
+
       const newUser = await user.save();
-  
-      const token = jwt.sign({ userId: newUser._id }, process.env.TOKEN_SECRET);
-  
-      res.status(201).json({ token });
+
+      res.status(201).json({ message: 'User created successfully' })
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -37,9 +35,9 @@ exports.register = async (req, res) => {
 
   
   exports.login = async (req, res) => {
-    const { email, password } = req.body;
-  
     try {
+      const { email, password } = req.body;
+
       const user = await userModel.findOne({ email });
       if (!user) {
         return res.status(401).json({ message: 'Invalid email or password' });
@@ -50,7 +48,7 @@ exports.register = async (req, res) => {
         return res.status(401).json({ message: 'Invalid email or password' });
       }
   
-      const token = jwt.sign({ userId: user._id }, process.env.TOKEN_SECRET);
+      const token = jwt.sign({ userId: user._id, role:user.role }, process.env.TOKEN_SECRET);
   
       res.status(200).json({ token });
     } catch (err) {

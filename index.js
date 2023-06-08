@@ -1,6 +1,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/user-routes')
+const publicRoutes = require('./routes/public/public')
+const adminRoutes = require('./routes/admin/admin')
 const kelasRoutes = require('./routes/kelas-routes')
 
 
@@ -15,6 +17,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // routes
 app.use('/api/users', userRoutes);
+app.use(publicRoutes)
+app.use(adminRoutes)
 app.use('/api/kelas', kelasRoutes);
 
 
