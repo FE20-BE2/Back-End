@@ -3,6 +3,8 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/user-routes')
 const publicRoutes = require('./routes/public/public')
 const adminRoutes = require('./routes/admin/admin')
+const kelasRoutes = require('./routes/kelas-routes')
+
 
 require('dotenv').config();
 
@@ -17,6 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/users', userRoutes);
 app.use(publicRoutes)
 app.use(adminRoutes)
+app.use('/api/kelas', kelasRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('<h1>Halo, Selamat Datang!</h1>');
