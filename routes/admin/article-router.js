@@ -1,7 +1,7 @@
 const express = require('express')
 const authenticateUser = require('../../middleware/verify-token')
 const authorizeAdmin = require('../../middleware/authorize-admin')
-const upload = require('../../file-upload/multer-img');
+const upload = require('../../middleware/file-upload/multer-img');
 
 const router = express.Router()
 
