@@ -27,7 +27,7 @@ module.exports = {
             ])
             res.status(200).json({ status: 'Success', data: article})
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: 'Internal server error' });
         }
     },
 
@@ -90,7 +90,7 @@ module.exports = {
 
             res.status(201).json({ status: 'Success', message: 'Article created successfully', data: newArticle})
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: 'Internal server error' });
         }
     },
 
@@ -130,9 +130,9 @@ module.exports = {
             article.articleImgUrl = updateDataArticle.articleImgUrl
             await article.save()
 
-            res.status(201).json({ status: 'Success', message: 'Article updated successfully' })
+            res.status(200).json({ status: 'Success', message: 'Article updated successfully' })
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: 'Internal server error' });
         }
     },
 
@@ -152,7 +152,7 @@ module.exports = {
 
             res.status(200).json({ status: 'Success', message: 'Article deleted successfully'})
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: 'Internal server error' });
         }
     },
 }
