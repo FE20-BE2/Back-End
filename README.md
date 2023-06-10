@@ -279,7 +279,7 @@ Request :
 - Endpoint : `/api/admin/article-categories`
 - Headers:
     - `Authorization: Bearer [admin_token]`
--Request Body:
+- Request Body:
 
 ```json 
 {
@@ -312,7 +312,7 @@ Request :
 - Endpoint : `/api/admin/article-categories`
 - Headers:
     - `Authorization: Bearer [admin_token]`
--Request Body:
+- Request Body:
 
 ```json 
 {
