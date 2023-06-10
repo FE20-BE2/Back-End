@@ -2,10 +2,9 @@ const Kelas = require('../models/kelas');
 
 exports.createOnlineClass = async (req, res) => {
   try {
-    const { nama, matkul, tanggalMulai, waktu } = req.body;
+    const { matkul, tanggalMulai, waktu } = req.body;
 
     const kelasBaru = new Kelas({
-      nama,
       matkul,
       lokasi: 'online',
       tanggalMulai,
@@ -21,10 +20,9 @@ exports.createOnlineClass = async (req, res) => {
 
 exports.createOfflineClass = async (req, res) => {
   try {
-    const { nama, matkul, lokasi, tanggalMulai, waktu } = req.body;
+    const { matkul, lokasi, tanggalMulai, waktu } = req.body;
 
     const kelasBaru = new Kelas({
-      nama,
       matkul,
       lokasi,
       tanggalMulai,
@@ -61,14 +59,13 @@ exports.getClassById = async (req, res) => {
 
 exports.updateClassById = async (req, res) => {
   try {
-    const { nama, matkul, lokasi, tanggalMulai, waktu } = req.body;
+    const { matkul, lokasi, tanggalMulai, waktu } = req.body;
     const kelas = await Kelas.findById(req.params.id);
 
     if (!kelas) {
       return res.status(404).json({ message: 'Kelas tidak ditemukan' });
     }
 
-    kelas.nama = nama;
     kelas.matkul = matkul;
     kelas.lokasi = lokasi;
     kelas.tanggalMulai = tanggalMulai;
