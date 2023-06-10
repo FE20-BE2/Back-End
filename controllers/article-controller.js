@@ -74,7 +74,7 @@ module.exports = {
         try {
             const limit = parseInt(req.query.limit) || 3;
 
-            const detailArticle = await Article.aggregate([
+            const latestArticle = await Article.aggregate([
                 {
                     $sort: {
                         releaseDate: -1
@@ -104,11 +104,11 @@ module.exports = {
                 }
             ])
 
-            if (detailArticle.length === 0) {
+            if (latestArticle.length === 0) {
                 return res.status(404).json({ message: 'Article not found' })
             }
 
-            res.status(200).json({ status: 'Success', data: detailArticle })
+            res.status(200).json({ status: 'Success', data: latestArticle })
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
         }

@@ -48,7 +48,7 @@ module.exports = {
 
             res.status(200).json({ status: 'Success', data: detailArticleCategory})
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: 'Internal server error' });
         }
     },
 
@@ -71,7 +71,7 @@ module.exports = {
 
             res.status(201).json({ status: 'Success', message: 'Article Category created successfully', data: newArticleCategory})
         } catch (error) {
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: 'Internal server error' });
         }
     }, 
 
