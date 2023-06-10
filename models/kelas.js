@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const kelasSchema = new mongoose.Schema({
-    nama: {
-      type: String,
-      required: true
-    },
     matkul: {
       type: String,
       required: true
