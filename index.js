@@ -4,7 +4,7 @@ const userRoutes = require('./routes/user-routes')
 const publicRoutes = require('./routes/public/public')
 const adminRoutes = require('./routes/admin/admin')
 const kelasRoutes = require('./routes/kelas-routes')
-const adminkelasRoutes = require('./routes/admin-kelas-routes')
+const publicKelasRoutes = require('./routes/admin-kelas-routes')
 
 require('dotenv').config();
 
@@ -21,7 +21,7 @@ app.use('/api/users', userRoutes);
 app.use(publicRoutes)
 app.use(adminRoutes)
 app.use('/api/user/kelas', kelasRoutes);
-app.use('/api/admin/kelas', adminkelasRoutes);
+app.use('/api/admin/kelas', publicKelasRoutes);
 
 
 app.get('/', (req, res) => {
