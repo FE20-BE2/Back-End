@@ -1,9 +1,22 @@
 const ArticleCategory = require('../models/article-category')
+const mongoose = require('mongoose')
 
 module.exports = {
     getAllArticleCategories: async (req, res) => {
         try {
-            const articleCategories = await ArticleCategory.find()
+            const articleCategories = await ArticleCategory.aggregate([
+                {
+                    $project: {
+                        _id: 1,
+                        categoryName: 1,
+                    }
+                }
+            ])
+
+            if (articleCategories.length === 0) {
+                return res.status(404).json({ message: 'No data' })
+            }
+
             res.status(200).json({ status: 'Success', data: articleCategories})
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
@@ -13,9 +26,23 @@ module.exports = {
     getArticleCategoryById: async (req, res) => {
         try {
             const articleCategoryId = req.params.id
-            const detailArticleCategory = await ArticleCategory.findOne({ _id: articleCategoryId})
 
-            if (!detailArticleCategory) {
+            const detailArticleCategory = await ArticleCategory.aggregate([
+                {
+                    $match: { 
+                        _id: mongoose.Types.ObjectId.createFromHexString(articleCategoryId) 
+                    },
+                },
+                {
+                    $project: {
+                        _id : 1,
+                        categoryName: 1
+                    }
+                },
+                {   $limit: 1 }
+            ])
+
+            if (detailArticleCategory.length === 0) {
                 return res.status(404).json({ message: 'Article category not found' })
             }
 
@@ -36,7 +63,8 @@ module.exports = {
 
             const newArticleCategory = new ArticleCategory ({
                 categoryName,
-                createdBy: req.user.userId
+                createdBy: req.user.userId,
+                updatedBy: req.user.userId
             })
 
             await newArticleCategory.save()
@@ -59,6 +87,7 @@ module.exports = {
             }
 
             articleCategory.categoryName = categoryName
+            articleCategory.updatedBy = req.user.userId
             await articleCategory.save()
 
             res.status(200).json({ status: 'Success', message: 'Article Category updated successfully', data: articleCategory})

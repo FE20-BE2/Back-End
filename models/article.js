@@ -21,6 +21,10 @@ const articleSchema = new mongoose.Schema({
       type: Date,
       required: true,
     },
+    timesRead: {
+      type: String,
+      required: true,
+    },
     articleImg: {
       type: String,
       required: true,
@@ -30,6 +34,10 @@ const articleSchema = new mongoose.Schema({
       required: true,
     }, 
     createdBy: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'User'
+    }, 
+    updatedBy: {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'User'
     }
