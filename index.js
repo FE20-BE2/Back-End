@@ -30,6 +30,6 @@ app.get('/', (req, res) => {
   res.send('<h1>Halo, Selamat Datang!</h1>');
 });
 
-app.listen(3030, () => {
+app.listen(process.env.PORT || 3030, "0.0.0.0", () => {
   console.log('Server berjalan pada port 3030');
 });
