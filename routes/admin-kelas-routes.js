@@ -11,7 +11,7 @@ const {
   getClassById,
   updateClassById,
   deleteClassById 
-} = require('../controllers/Kelas');
+} = require('../controllers/Kelas-controller');
 
 router.post('/online', auth, createOnlineClass);
 
