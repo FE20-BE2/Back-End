@@ -5,6 +5,7 @@ const userRoutes = require('./routes/login-register-router')
 const publicRoutes = require('./routes/public/public')
 const adminRoutes = require('./routes/admin/admin')
 const kelasOnlineRoutes = require('./routes/kelas-online-routes')
+const kelasOfflineRoutes = require('./routes/kelas-offline-routes')
 const publicKelasRoutes = require('./routes/admin-kelas-routes')
 
 require('dotenv').config();
