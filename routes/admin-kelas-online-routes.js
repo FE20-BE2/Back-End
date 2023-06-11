@@ -18,7 +18,7 @@ router.get('/', auth, getClasses);
 
 router.get('/:id', auth, getClassById);
 
-router.put('/:id', auth, updateClassById);
+router.put('/update/:id', auth, updateClassById);
 
 router.delete('/delete/:id', auth, deleteClassById);
 
