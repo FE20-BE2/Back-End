@@ -6,7 +6,6 @@ const router = express.Router();
 
 const { 
   createOnlineClass, 
-  createOfflineClass,
   getClasses,
   getClassById,
   updateClassById,
@@ -14,8 +13,6 @@ const {
 } = require('../controllers/Kelas-Online-controller');
 
 router.post('/online', auth, createOnlineClass);
-
-router.post('/offline', auth, createOfflineClass);
 
 router.get('/', auth, getClasses);
 

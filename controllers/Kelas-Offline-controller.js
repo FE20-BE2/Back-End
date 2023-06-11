@@ -1,4 +1,4 @@
-const Kelas = require('../models/kelas-online');
+const Kelas = require('../models/kelas-offline');
 
 exports.createOfflineClass = async (req, res) => {
     try {

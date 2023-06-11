@@ -5,8 +5,8 @@ const userRoutes = require('./routes/login-register-router')
 const publicRoutes = require('./routes/public/public')
 const adminRoutes = require('./routes/admin/admin')
 const kelasOnlineRoutes = require('./routes/kelas-online-routes')
-const kelasOfflineRoutes = require('./routes/kelas-offline-routes')
-const publicKelasRoutes = require('./routes/admin-kelas-routes')
+const adminOfflineRoutes = require('./routes/admin-kelas-offline-routes')
+const adminOnlineRoutes = require('./routes/admin-kelas-online-routes')
 
 require('dotenv').config();
 
@@ -23,9 +23,9 @@ app.use(express.static('public'))
 app.use('/api/users', userRoutes);
 app.use(publicRoutes)
 app.use(adminRoutes)
-app.use('/api/user/kelas', kelasOnlineRoutes);
-app.use('/api/user/kelas', kelasOfflineRoutes);
-app.use('/api/admin/kelas', publicKelasRoutes);
+app.use('/api/user/kelas/online', kelasOnlineRoutes);
+app.use('/api/admin/kelas/offline', adminOfflineRoutes);
+app.use('/api/admin/kelas/online', adminOnlineRoutes);
 
 
 app.get('/', (req, res) => {
