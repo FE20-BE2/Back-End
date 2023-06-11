@@ -20,6 +20,6 @@ router.get('/:id', auth, getClassById);
 
 router.put('/:id', auth, updateClassById);
 
-router.delete('//:id', auth, deleteClassById);
+router.delete('/delete/:id', auth, deleteClassById);
 
 module.exports = router;

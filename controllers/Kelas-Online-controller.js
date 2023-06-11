@@ -69,7 +69,7 @@ exports.deleteClassById = async (req, res) => {
       return res.status(404).json({ message: 'Kelas tidak ditemukan' });
     }
 
-    await kelas.remove();
+    await kelas.deleteOne();
     res.json({ message: 'Class deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
