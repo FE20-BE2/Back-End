@@ -21,6 +21,10 @@ const kelasSchema = new mongoose.Schema({
       type: Date,
       default: Date.now,
     },
+    mentor: {
+      type: Object, String,
+      required: true
+  },
     updatedAt: {
       type: Date,
       default: Date.now,
