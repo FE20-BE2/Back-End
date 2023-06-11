@@ -6,9 +6,9 @@ const router = express.Router();
 
 const { 
   getClasses
-} = require('../controllers/Kelas-Online-controller');
+} = require('../controllers/Kelas-Offline-controller');
 
 
-router.get('/', auth, getClasses);
+router.get('/offline', auth, getClasses);
 
 module.exports = router;
