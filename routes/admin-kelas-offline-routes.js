@@ -5,12 +5,12 @@ require('dotenv').config();
 const router = express.Router();
 
 const { 
-  createOnlineClass, 
+  createOfflineClass, 
   getClasses,
   getClassById,
   updateClassById,
   deleteClassById 
-} = require('../controllers/Kelas-Online-controller');
+} = require('../controllers/Kelas-Offline-controller');
 
 router.post('/offline', auth, createOfflineClass);
 
