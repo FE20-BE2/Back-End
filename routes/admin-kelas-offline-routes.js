@@ -5,15 +5,12 @@ require('dotenv').config();
 const router = express.Router();
 
 const { 
-  createOnlineClass, 
-  createOfflineClass,
+  createOfflineClass, 
   getClasses,
   getClassById,
   updateClassById,
   deleteClassById 
-} = require('../controllers/Kelas-controller');
-
-router.post('/online', auth, createOnlineClass);
+} = require('../controllers/Kelas-Offline-controller');
 
 router.post('/offline', auth, createOfflineClass);
 
@@ -21,8 +18,8 @@ router.get('/', auth, getClasses);
 
 router.get('/:id', auth, getClassById);
 
-router.put('/:id', auth, updateClassById);
+router.put('/update/:id', auth, updateClassById);
 
-router.delete('//:id', auth, deleteClassById);
+router.delete('/delete/:id', auth, deleteClassById);
 
 module.exports = router;
