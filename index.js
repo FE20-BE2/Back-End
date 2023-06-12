@@ -1,11 +1,11 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors')
-const userRoutes = require('./routes/login-register-router')
 const publicRoutes = require('./routes/public/public')
 const adminRoutes = require('./routes/admin/admin')
 const kelasRoutes = require('./routes/kelas-routes')
 const publicKelasRoutes = require('./routes/admin-kelas-routes')
+const userRoutes = require('./routes/user/user') 
 
 require('dotenv').config();
 
@@ -19,16 +19,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 // routes
-app.use('/api/users', userRoutes);
 app.use(publicRoutes)
 app.use(adminRoutes)
+app.use(userRoutes)
 app.use('/api/user/kelas', kelasRoutes);
 app.use('/api/admin/kelas', publicKelasRoutes);
-
-
-app.get('/', (req, res) => {
-  res.send('<h1>Halo, Selamat Datang!</h1>');
-});
 
 app.listen(3030, () => {
   console.log('Server berjalan pada port 3030');
