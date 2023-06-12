@@ -20,8 +20,7 @@ exports.createOfflineClass = async (req, res) => {
       const savedKelas = await kelasBaru.save();
       savedKelas.mentor = mentor;
   
-      res.status(201).json(savedKelas);
-      res.status(201).json({ message: "Offline class created successfully." });
+      res.status(201).json({ message: "Offline class created successfully.", kelas: savedKelas });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

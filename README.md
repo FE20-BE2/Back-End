@@ -624,7 +624,7 @@ Request :
 ## Create Mentor
 
  Method : `POST`
-- Endpoint : `/api/user/kelas-offline`
+- Endpoint : `/api/mentor`
 - Headers:
     - `Authorization: Bearer [token]`
 
@@ -641,25 +641,73 @@ Request :
     }
 }
 ```
-
 
 ## Get All Mentor
 
  Method : `GET`
-- Endpoint : `/api/user/kelas-offline`
+- Endpoint : `/api/mentor`
 - Headers:
     - `Authorization: Bearer [token]`
 
 ```json 
 {
-    "message": "Mentor created successfully",
-    "data": {
-        "nama": "Bagol",
-        "spesialisasi": "Opera",
-        "_id": "64870b24940ee216162f19f0",
-        "createdAt": "2023-06-12T12:10:12.653Z",
-        "updatedAt": "2023-06-12T12:10:12.655Z",
+    "message": "Successfully retrieved all mentors",
+    "data": [
+        {
+            "_id": "6486b85daf7e1b54881ffcad",
+            "nama": "Ahmad",
+            "spesialisasi": "Seni Musik",
+            "createdAt": "2023-06-12T06:17:01.324Z",
+            "updatedAt": "2023-06-12T06:17:01.325Z",
+            "__v": 0
+        },
+        {
+            "_id": "64870b24940ee216162f19f0",
+            "nama": "Bagol",
+            "spesialisasi": "Opera",
+            "createdAt": "2023-06-12T12:10:12.653Z",
+            "updatedAt": "2023-06-12T12:10:12.655Z",
+            "__v": 0
+        }
+    ]
+}
+```
+
+## Admin Create Class Offline
+
+ Method : `POST`
+- Endpoint : `/api/admin-kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+
+```json 
+{
+    "message": "Offline class created successfully.",
+    "kelas": {
+        "matkul": "Opera",
+        "lokasi": "Jakarta",
+        "tanggalMulai": "2023-06-11T00:00:00.000Z",
+        "waktu": "09:00",
+        "mentor": {
+            "_id": "64870b24940ee216162f19f0",
+            "nama": "Bagol",
+            "spesialisasi": "Opera",
+            "createdAt": "2023-06-12T12:10:12.653Z",
+            "updatedAt": "2023-06-12T12:10:12.655Z",
+            "__v": 0
+        },
+        "_id": "6487132d2be7a2ed5ba1d860",
+        "createdAt": "2023-06-12T12:44:29.157Z",
+        "updatedAt": "2023-06-12T12:44:29.157Z",
         "__v": 0
     }
 }
 ```
+
+## Admin Create Class Online
+
+ Method : `POST`
+- Endpoint : `/api/admin-kelas-online`
+- Headers:
+    - `Authorization: Bearer [token]`
