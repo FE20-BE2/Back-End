@@ -8,6 +8,7 @@ const kelasOnlineRoutes = require('./routes/kelas-online-routes')
 const kelasOfflineRoutes = require('./routes/kelas-offline-routes')
 const adminOfflineRoutes = require('./routes/admin-kelas-offline-routes')
 const adminOnlineRoutes = require('./routes/admin-kelas-online-routes')
+const mentorRouter = require('./routes/mentor-kelas-routes')
 
 require('dotenv').config();
 
@@ -22,6 +23,7 @@ app.use(express.static('public'))
 
 // routes
 app.use('/api/users', userRoutes);
+app.use('/api/mentor', mentorRouter);
 app.use(publicRoutes)
 app.use(adminRoutes)
 app.use('/api/user/kelas/online', kelasOnlineRoutes);

@@ -22,9 +22,10 @@ const kelasSchema = new mongoose.Schema({
       default: Date.now,
     },
     mentor: {
-      type: Object, String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Mentor',
       required: true
-  },
+    },
     updatedAt: {
       type: Date,
       default: Date.now,
