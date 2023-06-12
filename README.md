@@ -7,7 +7,7 @@
 Request :
 - Method : `POST`
 - Endpoint : `/api/users/signup`
-- Body :
+- Request Body :
 
 ```json 
 {
@@ -18,7 +18,7 @@ Request :
 }
 ```
 
-Response :
+- Response :
 
 ```json 
 {
@@ -40,7 +40,7 @@ Request :
 }
 ```
 
-Response :
+- Response :
 
 ```json 
 {
@@ -57,7 +57,7 @@ Request :
 - Method : `GET`
 - Endpoint : `/api/articles`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -116,7 +116,7 @@ Request :
 - Method : `GET`
 - Endpoint : `/api/articles?categoryName=Sekolahan`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -161,7 +161,7 @@ Request :
 - Method : `GET`
 - Endpoint : `/api/articles/latest` or `/api/articles/latest?limit=1`, default limit=3
 
-Response :
+- Response :
 
 ```json 
 {
@@ -191,7 +191,7 @@ Request :
 - Method : `GET`
 - Endpoint : `/api/articles/:id`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -223,7 +223,7 @@ Request :
 - Method : `GET`
 - Endpoint : `/api/article-categories`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -256,7 +256,7 @@ Request :
 - Method : `GET`
 - Endpoint : `/api/article-categories/:id`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -287,7 +287,7 @@ Request :
 }
 ```
 
-Response :
+- Response :
 
 ```json 
 {
@@ -320,7 +320,7 @@ Request :
 }
 ```
 
-Response :
+- Response :
 
 ```json 
 {
@@ -346,7 +346,7 @@ Request :
 - Headers:
     - `Authorization: Bearer [admin_token]`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -364,18 +364,18 @@ Request :
 - Endpoint : `/api/admin/articles`
 - Headers:
     - `Authorization: Bearer [admin_token]`
--Request Body:
+- Request Body:
 
 `Form Data`
-title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
-content : Isi konten artikel.
-author : Andi Cahyono
-category : 64847daeca51fc1a63871239
-releaseDate : 2019-02-15
-timesRead : 15 min
-articleImg : image.png
+    - title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
+    - content : Isi konten artikel.
+    - author : Andi Cahyono
+    - category : 64847daeca51fc1a63871239
+    - releaseDate : 2019-02-15
+    - timesRead : 15 min
+    - articleImg : image.png
 
-Response :
+- Response :
 
 ```json 
 {
@@ -407,18 +407,18 @@ Request :
 - Endpoint : `/api/admin/articles/:id`
 - Headers:
     - `Authorization: Bearer [admin_token]`
--Request Body:
+- Request Body:
 
 `Form Data`
-title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
-content : Isi konten artikel.
-author : Andi Cahyono
-category : 64847daeca51fc1a63871239
-releaseDate : 2023-05-11
-timesRead : 14 min
-articleImg : imageUpdate.png
+    - title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
+    - content : Isi konten artikel.
+    - author : Andi Cahyono
+    - category : 64847daeca51fc1a63871239
+    - releaseDate : 2023-05-11
+    - timesRead : 14 min
+    - articleImg : imageUpdate.png
 
-Response :
+- Response :
 
 ```json 
 {
@@ -435,7 +435,7 @@ Request :
 - Headers:
     - `Authorization: Bearer [admin_token]`
 
-Response :
+- Response :
 
 ```json 
 {
@@ -445,3 +445,122 @@ Response :
 ```
 
 ---
+
+
+## Add Data User
+
+Request :
+- Method : `POST`
+- Endpoint : `/api/users/data-users`
+- Headers:
+    - `Authorization: Bearer [token]`
+- Request Body:
+
+`Form Data`
+    - fullName : Budi Hariyanto
+    - email : budi@gmail.com
+    - noPhone : 081273849382
+    - birthPlace : Medan
+    - birthDate : 2010-10-10
+    - gender : Pria
+    - school : SMAN 0 Medan
+    - instagram : budi12
+    - address : Jl. Kamboja No 1
+    - motivation : Ingin mengeksplor kemampuan
+    - portfolioFile : portfolio.pdf
+
+- Response :
+
+```json 
+{
+    "status": "Success",
+    "message": "User data created successfully",
+    "data": {
+        "fullName": "Budi Hariyanto",
+        "email": "budi@gmail.com",
+        "noPhone": "081273849382",
+        "birthPlace": "Medan",
+        "birthDate": "2010-10-10T00:00:00.000Z",
+        "gender": "Pria",
+        "school": "SMAN 0 Medan",
+        "instagram": "budi12",
+        "address": "Jl. Kamboja No 1",
+        "motivation": "Ingin mengeksplor kemampuan",
+        "portfolioFile": "1686566445227.pdf",
+        "portfolioUrl": "http://api-remedial-production-ecd6.up.railway.app/uploads/portfolio-user/1686566445227.pdf",
+        "userId": "6486f5c2846ae4f0fbbd10e5",
+        "_id": "6486f633846ae4f0fbbd10ea",
+        "createdAt": "2023-06-12T10:40:51.567Z",
+        "updatedAt": "2023-06-12T10:40:51.567Z",
+        "__v": 0
+    }
+}
+```
+
+## Update Article
+
+Request :
+- Method : `PUT`
+- Endpoint : `/api/users/data-users`
+- Headers:
+    - `Authorization: Bearer [token]`
+- Request Body:
+
+`Form Data`
+    - fullName : Budi Harianto
+    - email : budi123@gmail.com
+    - noPhone : 081273849382
+    - birthPlace : Medan
+    - birthDate : 2010-10-10
+    - gender : Pria
+    - school : SMAN 0 Medan
+    - instagram : budi12
+    - address : Jl. Kamboja No 12
+    - motivation : Ingin mengeksplor kemampuan
+    - portfolioFile : portfolio.pdf
+
+- Response :
+
+```json 
+{
+    "status": "Success",
+    "message": "Data user updated successfully"
+}
+```
+
+## Get Data User
+
+Request :
+- Method : `GET`
+- Endpoint : `/api/users/data-users`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+
+```json
+{
+    "status": "Success",
+    "data": [
+        {
+            "_id": "6486f633846ae4f0fbbd10ea",
+            "fullName": "Budi Harianto",
+            "email": "budi123@gmail.com",
+            "noPhone": "081273849382",
+            "birthPlace": "Medan",
+            "birthDate": "2010-10-10T00:00:00.000Z",
+            "gender": "Pria",
+            "school": "SMAN 0 Medan",
+            "instagram": "budi123",
+            "address": "Jl. Kamboja No 12",
+            "motivation": "Ingin mengeksplor kemampuan",
+            "portfolioFile": "1686567018896.pdf",
+            "portfolioUrl": "http://api-remedial-production-ecd6.up.railway.app/uploads/portfolio-user/1686567018896.pdf",
+            "userId": "6486f5c2846ae4f0fbbd10e5",
+            "createdAt": "2023-06-12T10:40:51.567Z",
+            "updatedAt": "2023-06-12T10:50:21.019Z",
+            "__v": 0
+        }
+    ]
+}
+```
