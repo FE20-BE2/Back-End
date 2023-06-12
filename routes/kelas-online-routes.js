@@ -9,6 +9,6 @@ const {
 } = require('../controllers/Kelas-Online-controller');
 
 
-router.get('/', auth, getClasses);
+router.get('/api/user/kelas-online', auth, getClasses);
 
 module.exports = router;
