@@ -1,18 +1,25 @@
 const Kelas = require('../models/kelas-online');
+const Mentor = require('../models/mentor-kelas');
 
 exports.createOnlineClass = async (req, res) => {
   try {
-    const { matkul, tanggalMulai, waktu, mentor } = req.body;
+    const { matkul, tanggalMulai, waktu, mentorId } = req.body;
+    const mentor = await Mentor.findById(mentorId);
+    if (!mentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
 
     const kelasBaru = new Kelas({
       matkul,
       lokasi: 'online',
       tanggalMulai,
       waktu,
-      mentor
+      mentor: mentor._id
     });
 
     const savedKelas = await kelasBaru.save();
+    savedKelas.mentor = mentor;
+
     res.status(201).json(savedKelas);
     res.status(201).json({ message: "Online class created successfully." });
   } catch (error) {
