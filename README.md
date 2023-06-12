@@ -367,13 +367,13 @@ Request :
 - Request Body:
 
 `Form Data`
-    - title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
-    - content : Isi konten artikel.
-    - author : Andi Cahyono
-    - category : 64847daeca51fc1a63871239
-    - releaseDate : 2019-02-15
-    - timesRead : 15 min
-    - articleImg : image.png
+- title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
+- content : Isi konten artikel.
+- author : Andi Cahyono
+- category : 64847daeca51fc1a63871239
+- releaseDate : 2019-02-15
+- timesRead : 15 min
+- articleImg : image.png
 
 - Response :
 
@@ -410,13 +410,13 @@ Request :
 - Request Body:
 
 `Form Data`
-    - title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
-    - content : Isi konten artikel.
-    - author : Andi Cahyono
-    - category : 64847daeca51fc1a63871239
-    - releaseDate : 2023-05-11
-    - timesRead : 14 min
-    - articleImg : imageUpdate.png
+- title : Pertemuan Ke Tujuh : Ngobrol Bareng OK Video
+- content : Isi konten artikel.
+- author : Andi Cahyono
+- category : 64847daeca51fc1a63871239
+- releaseDate : 2023-05-11
+- timesRead : 14 min
+- articleImg : imageUpdate.png
 
 - Response :
 
@@ -457,17 +457,17 @@ Request :
 - Request Body:
 
 `Form Data`
-    - fullName : Budi Hariyanto
-    - email : budi@gmail.com
-    - noPhone : 081273849382
-    - birthPlace : Medan
-    - birthDate : 2010-10-10
-    - gender : Pria
-    - school : SMAN 0 Medan
-    - instagram : budi12
-    - address : Jl. Kamboja No 1
-    - motivation : Ingin mengeksplor kemampuan
-    - portfolioFile : portfolio.pdf
+- fullName : Budi Hariyanto
+- email : budi@gmail.com
+- noPhone : 081273849382
+- birthPlace : Medan
+- birthDate : 2010-10-10
+- gender : Pria
+- school : SMAN 0 Medan
+- instagram : budi12
+- address : Jl. Kamboja No 1
+- motivation : Ingin mengeksplor kemampuan
+- portfolioFile : portfolio.pdf
 
 - Response :
 
@@ -507,17 +507,17 @@ Request :
 - Request Body:
 
 `Form Data`
-    - fullName : Budi Harianto
-    - email : budi123@gmail.com
-    - noPhone : 081273849382
-    - birthPlace : Medan
-    - birthDate : 2010-10-10
-    - gender : Pria
-    - school : SMAN 0 Medan
-    - instagram : budi12
-    - address : Jl. Kamboja No 12
-    - motivation : Ingin mengeksplor kemampuan
-    - portfolioFile : portfolio.pdf
+- fullName : Budi Harianto
+- email : budi123@gmail.com
+- noPhone : 081273849382
+- birthPlace : Medan
+- birthDate : 2010-10-10
+- gender : Pria
+- school : SMAN 0 Medan
+- instagram : budi12
+- address : Jl. Kamboja No 12
+- motivation : Ingin mengeksplor kemampuan
+- portfolioFile : portfolio.pdf
 
 - Response :
 
