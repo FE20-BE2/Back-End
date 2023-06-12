@@ -9,6 +9,6 @@ const {
 } = require('../controllers/Kelas-Offline-controller');
 
 
-router.get('/', auth, getClasses);
+router.get('/api/user/kelas-offline', auth, getClasses);
 
 module.exports = router;

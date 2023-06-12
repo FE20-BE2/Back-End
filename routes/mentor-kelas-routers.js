@@ -13,12 +13,12 @@ const {
 } = require('../controllers/mentor-kelas-controller');
 
 
-router.post('/',  auth, createMentor);
+router.post('/api/mentor',  auth, createMentor);
 
-router.get('/',  auth, getAllMentors);
+router.get('/api/mentor',  auth, getAllMentors);
 
-router.get('/:id',  auth, getMentorById);
+router.get('/api/mentor/:id',  auth, getMentorById);
 
-router.delete('/:id',  auth, deleteMentor);
+router.delete('/api/mentor/:id',  auth, deleteMentor);
 
 module.exports = router;

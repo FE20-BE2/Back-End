@@ -22,14 +22,14 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 // routes
-app.use('/api/mentor', mentorRouter);
+app.use(mentorRouter);
 app.use(publicRoutes)
 app.use(adminRoutes)
 app.use(userRoutes)
-app.use('/api/user/kelas/online', kelasOnlineRoutes);
-app.use('/api/user/kelas/ofline', kelasOfflineRoutes);
-app.use('/api/admin/kelas/v1', adminOfflineRoutes);
-app.use('/api/admin/kelas/v2', adminOnlineRoutes);
+app.use(kelasOnlineRoutes);
+app.use(kelasOfflineRoutes);
+app.use(adminOfflineRoutes);
+app.use(adminOnlineRoutes);
 
 app.listen(process.env.PORT || 3030, "0.0.0.0", () => {
   console.log('Server berjalan pada port 3030');

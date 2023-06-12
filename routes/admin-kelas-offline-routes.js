@@ -12,14 +12,14 @@ const {
   deleteClassById 
 } = require('../controllers/Kelas-Offline-controller');
 
-router.post('/offline', auth, createOfflineClass);
+router.post('/api/admin-kelas-offline', auth, createOfflineClass);
 
-router.get('/', auth, getClasses);
+router.get('/api/admin-kelas-offline', auth, getClasses);
 
-router.get('/:id', auth, getClassById);
+router.get('/api/admin-kelas-offline/:id', auth, getClassById);
 
-router.put('/update/:id', auth, updateClassById);
+router.put('/api/admin-kelas-offline/update/:id', auth, updateClassById);
 
-router.delete('/delete/:id', auth, deleteClassById);
+router.delete('/api/admin-kelas-offline/delete/:id', auth, deleteClassById);
 
 module.exports = router;
