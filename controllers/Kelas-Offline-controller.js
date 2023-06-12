@@ -2,13 +2,14 @@ const Kelas = require('../models/kelas-offline');
 
 exports.createOfflineClass = async (req, res) => {
     try {
-      const { matkul, lokasi, tanggalMulai, waktu } = req.body;
+      const { matkul, lokasi, tanggalMulai, waktu, mentor} = req.body;
   
       const kelasBaru = new Kelas({
         matkul,
         lokasi,
         tanggalMulai,
-        waktu
+        waktu,
+        mentor
       });
   
       const savedKelas = await kelasBaru.save();

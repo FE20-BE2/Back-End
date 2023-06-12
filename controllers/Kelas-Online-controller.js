@@ -2,13 +2,14 @@ const Kelas = require('../models/kelas-online');
 
 exports.createOnlineClass = async (req, res) => {
   try {
-    const { matkul, tanggalMulai, waktu } = req.body;
+    const { matkul, tanggalMulai, waktu, mentor } = req.body;
 
     const kelasBaru = new Kelas({
       matkul,
       lokasi: 'online',
       tanggalMulai,
-      waktu
+      waktu,
+      mentor
     });
 
     const savedKelas = await kelasBaru.save();

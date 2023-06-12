@@ -1,5 +1,4 @@
 const express = require('express');
-const express = require('express');
 const auth = require('../middleware/verify-token');
 require('dotenv').config();
 
@@ -12,8 +11,6 @@ const {
     getMentorById,
     deleteMentor
 } = require('../controllers/mentor-kelas-controller');
-
-
 
 
 router.post('/',  auth, createMentor);

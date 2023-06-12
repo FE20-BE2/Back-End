@@ -1,4 +1,4 @@
-const Mentor = require('./path/to/mentor-kelas');
+const Mentor = require('../models/mentor-kelas');
 
 exports.createMentor = async function (req, res) {
   try {

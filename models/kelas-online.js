@@ -1,16 +1,5 @@
 const mongoose = require('mongoose');
 
-const mentorSchema = new mongoose.Schema({
-  nama: {
-    type: String,
-    required: true
-  },
-  spesialisasi: {
-    type: String,
-    required: true
-  }
-});
-
 const kelasSchema = new mongoose.Schema({
     matkul: {
       type: String,
@@ -30,8 +19,7 @@ const kelasSchema = new mongoose.Schema({
     },
     mentor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Mentor',
-      required: true
+      ref: 'Mentor'
     },
     createdAt: {
       type: Date,
