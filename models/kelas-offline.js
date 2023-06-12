@@ -16,7 +16,21 @@ const kelasSchema = new mongoose.Schema({
     waktu: {
       type: String,
       required: true
-    }
-  });
+    },
+    mentor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Mentor',
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    updatedAt: {
+      type: Date,
+      default: Date.now,
+    },
+  }
+);
 
-module.exports = mongoose.model('kelas', kelasSchema)
+module.exports = mongoose.model('kelas-offline', kelasSchema)
