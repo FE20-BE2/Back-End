@@ -1,1 +1,0 @@
-const midtransClient = require("midtrans-client");
