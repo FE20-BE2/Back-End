@@ -3,7 +3,7 @@ const Mentor = require('../models/mentor-kelas');
 exports.createMentor = async function (req, res) {
   try {
     const { nama, spesialisasi } = req.body;
-    const mentor = new Mentor({ nama, spesialisasi });
+    const mentor = new Mentor({ nama, spesialisasi, email, photo });
     const createdMentor = await mentor.save();
     res.status(201).json({ message: 'Mentor created successfully', data: createdMentor });
   } catch (error) {
