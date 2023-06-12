@@ -565,69 +565,15 @@ Request :
 }
 ```
 
-
-## Get Class Offline
-
-- Method : `GET`
-- Endpoint : `/api/user/kelas-offline`
-- Headers:
-    - `Authorization: Bearer [token]`
-
-```json 
-{
-        "_id": "64870bcf940ee216162f19f6",
-        "matkul": "Opera",
-        "lokasi": "Depok",
-        "tanggalMulai": "2023-06-11T00:00:00.000Z",
-        "waktu": "09:00",
-        "mentor": {
-            "_id": "64870b24940ee216162f19f0",
-            "nama": "Bagol",
-            "spesialisasi": "Opera",
-            "createdAt": "2023-06-12T12:10:12.653Z",
-            "updatedAt": "2023-06-12T12:10:12.655Z",
-            "__v": 0
-        },
-        "createdAt": "2023-06-12T12:13:03.267Z",
-        "updatedAt": "2023-06-12T12:13:03.267Z",
-        "__v": 0
-    }
-```
-
-## Get Class Online
-
-- Method : `GET`
-- Endpoint : `/api/user/kelas-offline`
-- Headers:
-    - `Authorization: Bearer [token]`
-
-```json 
-{
-        "_id": "64870ac7c2818d6ee6abf5a5",
-        "matkul": "Musik",
-        "lokasi": "online",
-        "tanggalMulai": "2023-06-11T00:00:00.000Z",
-        "waktu": "09:00",
-        "mentor": {
-            "_id": "6486b85daf7e1b54881ffcad",
-            "nama": "Ahmad",
-            "spesialisasi": "Seni Musik",
-            "createdAt": "2023-06-12T06:17:01.324Z",
-            "updatedAt": "2023-06-12T06:17:01.325Z",
-            "__v": 0
-        },
-        "createdAt": "2023-06-12T12:08:39.846Z",
-        "updatedAt": "2023-06-12T12:08:39.846Z",
-        "__v": 0}
-```
-
 ## Create Mentor
 
+Request :
  Method : `POST`
 - Endpoint : `/api/mentor`
 - Headers:
     - `Authorization: Bearer [token]`
 
+- Response:
 ```json 
 {
     "message": "Mentor created successfully",
@@ -644,11 +590,13 @@ Request :
 
 ## Get All Mentor
 
+Request :
  Method : `GET`
 - Endpoint : `/api/mentor`
 - Headers:
     - `Authorization: Bearer [token]`
 
+- Response:
 ```json 
 {
     "message": "Successfully retrieved all mentors",
@@ -675,12 +623,13 @@ Request :
 
 ## Admin Create Class Offline
 
+Request :
  Method : `POST`
 - Endpoint : `/api/admin-kelas-offline`
 - Headers:
     - `Authorization: Bearer [token]`
 
-
+- Response:
 ```json 
 {
     "message": "Offline class created successfully.",
@@ -707,7 +656,177 @@ Request :
 
 ## Admin Create Class Online
 
+Request :
  Method : `POST`
 - Endpoint : `/api/admin-kelas-online`
 - Headers:
     - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+    "message": "Online class created successfully.",
+    "kelas": {
+        "matkul": "Musik",
+        "lokasi": "online",
+        "tanggalMulai": "2023-06-11T00:00:00.000Z",
+        "waktu": "07:00",
+        "mentor": {
+            "_id": "6486b85daf7e1b54881ffcad",
+            "nama": "Muhammad",
+            "spesialisasi": "Seni Musik",
+            "createdAt": "2023-06-12T06:17:01.324Z",
+            "updatedAt": "2023-06-12T06:17:01.325Z",
+            "__v": 0
+        },
+        "_id": "6487255caf397dde1f9c51d3",
+        "createdAt": "2023-06-12T14:02:04.637Z",
+        "updatedAt": "2023-06-12T14:02:04.637Z",
+        "__v": 0
+    }
+}
+```
+
+
+
+## Get Class Offline
+
+Request :
+- Method : `GET`
+- Endpoint : `/api/user/kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+        "_id": "64870bcf940ee216162f19f6",
+        "matkul": "Opera",
+        "lokasi": "Depok",
+        "tanggalMulai": "2023-06-11T00:00:00.000Z",
+        "waktu": "09:00",
+        "mentor": {
+            "_id": "64870b24940ee216162f19f0",
+            "nama": "Bagol",
+            "spesialisasi": "Opera",
+            "createdAt": "2023-06-12T12:10:12.653Z",
+            "updatedAt": "2023-06-12T12:10:12.655Z",
+            "__v": 0
+        },
+        "createdAt": "2023-06-12T12:13:03.267Z",
+        "updatedAt": "2023-06-12T12:13:03.267Z",
+        "__v": 0
+    }
+```
+
+## Get Class Online
+
+Request :
+- Method : `GET`
+- Endpoint : `/api/user/kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+        "_id": "64870ac7c2818d6ee6abf5a5",
+        "matkul": "Musik",
+        "lokasi": "online",
+        "tanggalMulai": "2023-06-11T00:00:00.000Z",
+        "waktu": "09:00",
+        "mentor": {
+            "_id": "6486b85daf7e1b54881ffcad",
+            "nama": "Ahmad",
+            "spesialisasi": "Seni Musik",
+            "createdAt": "2023-06-12T06:17:01.324Z",
+            "updatedAt": "2023-06-12T06:17:01.325Z",
+            "__v": 0
+        },
+        "createdAt": "2023-06-12T12:08:39.846Z",
+        "updatedAt": "2023-06-12T12:08:39.846Z",
+        "__v": 0}
+```
+
+## Admin Update Class Offline by ID
+
+Request :
+ Method : `PUT`
+- Endpoint : `/api/admin-kelas-offline/update/:id`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+    "message": "Class Updated successfully",
+    "kelas": {
+        "_id": "6487132d2be7a2ed5ba1d860",
+        "matkul": "Opera",
+        "lokasi": "Jakarta",
+        "tanggalMulai": "2023-06-13T00:00:00.000Z",
+        "waktu": "07:00",
+        "mentor": "64870b24940ee216162f19f0",
+        "createdAt": "2023-06-12T12:44:29.157Z",
+        "updatedAt": "2023-06-12T12:44:29.157Z",
+        "__v": 0
+    }
+}
+```
+
+## Admin Update Class Online by ID
+
+Request :
+ Method : `PUT`
+- Endpoint : `/api/admin-kelas-online/update/:id`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+    "message": "Class Updated successfully",
+    "kelas": {
+        "_id": "6487255caf397dde1f9c51d3",
+        "matkul": "Musik",
+        "lokasi": "Online",
+        "tanggalMulai": "2023-08-11T00:00:00.000Z",
+        "waktu": "09:00",
+        "mentor": "6486b85daf7e1b54881ffcad",
+        "createdAt": "2023-06-12T14:02:04.637Z",
+        "updatedAt": "2023-06-12T14:02:04.637Z",
+        "__v": 0
+    }
+}
+```
+
+## Admin Deleted Class Offline by ID
+
+Request :
+ Method : `DELETE`
+- Endpoint : `/api/admin-kelas-offline/delete/:id`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+    "message": "Class deleted successfully"
+}
+```
+
+
+## Admin Deleted Class Online by ID
+
+Request :
+ Method : `DELETE`
+- Endpoint : `/api/admin-kelas-online/delete/:id`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+- Response:
+```json 
+{
+    "message": "Class deleted successfully"
+}
+```
