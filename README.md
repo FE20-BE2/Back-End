@@ -564,3 +564,102 @@ Request :
     ]
 }
 ```
+
+
+## Get Class Offline
+
+- Method : `GET`
+- Endpoint : `/api/user/kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+```json 
+{
+        "_id": "64870bcf940ee216162f19f6",
+        "matkul": "Opera",
+        "lokasi": "Depok",
+        "tanggalMulai": "2023-06-11T00:00:00.000Z",
+        "waktu": "09:00",
+        "mentor": {
+            "_id": "64870b24940ee216162f19f0",
+            "nama": "Bagol",
+            "spesialisasi": "Opera",
+            "createdAt": "2023-06-12T12:10:12.653Z",
+            "updatedAt": "2023-06-12T12:10:12.655Z",
+            "__v": 0
+        },
+        "createdAt": "2023-06-12T12:13:03.267Z",
+        "updatedAt": "2023-06-12T12:13:03.267Z",
+        "__v": 0
+    }
+```
+
+## Get Class Online
+
+- Method : `GET`
+- Endpoint : `/api/user/kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+```json 
+{
+        "_id": "64870ac7c2818d6ee6abf5a5",
+        "matkul": "Musik",
+        "lokasi": "online",
+        "tanggalMulai": "2023-06-11T00:00:00.000Z",
+        "waktu": "09:00",
+        "mentor": {
+            "_id": "6486b85daf7e1b54881ffcad",
+            "nama": "Ahmad",
+            "spesialisasi": "Seni Musik",
+            "createdAt": "2023-06-12T06:17:01.324Z",
+            "updatedAt": "2023-06-12T06:17:01.325Z",
+            "__v": 0
+        },
+        "createdAt": "2023-06-12T12:08:39.846Z",
+        "updatedAt": "2023-06-12T12:08:39.846Z",
+        "__v": 0}
+```
+
+## Create Mentor
+
+ Method : `POST`
+- Endpoint : `/api/user/kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+```json 
+{
+    "message": "Mentor created successfully",
+    "data": {
+        "nama": "Bagol",
+        "spesialisasi": "Opera",
+        "_id": "64870b24940ee216162f19f0",
+        "createdAt": "2023-06-12T12:10:12.653Z",
+        "updatedAt": "2023-06-12T12:10:12.655Z",
+        "__v": 0
+    }
+}
+```
+
+
+## Get All Mentor
+
+ Method : `GET`
+- Endpoint : `/api/user/kelas-offline`
+- Headers:
+    - `Authorization: Bearer [token]`
+
+```json 
+{
+    "message": "Mentor created successfully",
+    "data": {
+        "nama": "Bagol",
+        "spesialisasi": "Opera",
+        "_id": "64870b24940ee216162f19f0",
+        "createdAt": "2023-06-12T12:10:12.653Z",
+        "updatedAt": "2023-06-12T12:10:12.655Z",
+        "__v": 0
+    }
+}
+```

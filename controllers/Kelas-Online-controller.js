@@ -30,7 +30,7 @@ exports.createOnlineClass = async (req, res) => {
 
 exports.getClasses = async (req, res) => {
   try {
-    const kelas = await Kelas.find();
+    const kelas = await Kelas.find().populate('mentor');
     res.json(kelas);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -39,7 +39,7 @@ exports.getClasses = async (req, res) => {
 
 exports.getClassById = async (req, res) => {
   try {
-    const kelas = await Kelas.findById(req.params.id);
+    const kelas = await Kelas.findById().populate('mentor');(req.params.id);
     if (!kelas) {
       return res.status(404).json({ message: 'Kelas tidak ditemukan' });
     }
@@ -51,10 +51,18 @@ exports.getClassById = async (req, res) => {
 
 exports.updateClassById = async (req, res) => {
   try {
-  const { matkul, lokasi, tanggalMulai, waktu } = req.body;
+  const { matkul, lokasi, tanggalMulai, waktu, mentorId} = req.body;
   const kelas = await Kelas.findById(req.params.id);
   if (!kelas) {
     return res.status(404).json({ message: 'Kelas tidak ditemukan' });
+  }
+  
+  if (mentorId !== kelas.mentor._id.toString()) {
+    const mentor = await Mentor.findById(mentorId);
+    if (!mentor) {
+      return res.status(404).json({ message: 'Mentor tidak ditemukan' });
+    }
+    kelas.mentor = mentor._id;
   }
   
   kelas.matkul = matkul;

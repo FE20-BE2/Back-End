@@ -30,7 +30,7 @@ exports.createOfflineClass = async (req, res) => {
 
 exports.getClasses = async (req, res) => {
   try {
-    const kelas = await Kelas.find();
+    const kelas = await Kelas.find().populate('mentor');
     res.json(kelas);
   } catch (error) {
     res.status(500).json({ message: error.message });
