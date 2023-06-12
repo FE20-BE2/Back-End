@@ -5,6 +5,6 @@ const userDataRouter = require('./data-user-router')
 const router = express.Router()
 
 router.use('/api/users/data-users', userDataRouter)
-router.use('./api/users', userRouter)
+router.use('/api/users', userRouter)
 
 module.exports = router
