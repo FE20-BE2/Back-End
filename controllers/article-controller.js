@@ -1,7 +1,7 @@
 const Article = require('../models/article')
 const ArticleCategory = require('../models/article-category')
 const mongoose = require('mongoose')
-const fs = require('fs')
+const cloudinary = require('../config/cloudinary')
 
 module.exports = {
     getAllArticles: async (req, res) => {
@@ -158,6 +158,10 @@ module.exports = {
 
     addArticle: async (req, res) => {
         try {
+            const articleImg = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'remedial-app/article-image',
+            });
+            
             const data = { 
                 title: req.body.title,
                 content: req.body.content,
@@ -165,8 +169,8 @@ module.exports = {
                 category: req.body.category,
                 releaseDate: req.body.releaseDate,
                 timesRead: req.body.timesRead,
-                articleImg: req.file.filename,
-                articleImgUrl: `${req.protocol}://${req.get('host')}/uploads/article-images/${req.file.filename}`,
+                articleImgId: articleImg.public_id,
+                articleImgUrl: articleImg.secure_url,
                 createdBy: req.user.userId,
                 updatedBy: req.user.userId
             }
@@ -181,7 +185,7 @@ module.exports = {
 
             res.status(201).json({ status: 'Success', message: 'Article created successfully', data: newArticle})
         } catch (error) {
-            res.status(500).json({ message: 'Internal server error' });
+            res.status(500).json({ message: error.message });
         }
     },
 
@@ -194,8 +198,11 @@ module.exports = {
                 return res.status(404).json({ message: 'Article not found' })
             }
 
-            const imagePath = `public/uploads/article-images/${article.articleImg}`
-            fs.unlinkSync(imagePath)
+            await cloudinary.uploader.destroy(article.articleImgId);
+
+            const articleImg = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'remedial-app/article-image',
+            });
 
             const updateDataArticle = { 
                 title: req.body.title,
@@ -204,8 +211,8 @@ module.exports = {
                 category: req.body.category,
                 releaseDate: req.body.releaseDate,
                 timesRead: req.body.timesRead,
-                articleImg: req.file.filename,
-                articleImgUrl: `${req.protocol}://${req.get('host')}/uploads/article-images/${req.file.filename}`,
+                articleImgId: articleImg.public_id,
+                articleImgUrl: articleImg.secure_url,
                 updatedBy: req.user.userId
             }
 
@@ -219,34 +226,31 @@ module.exports = {
             article.author = updateDataArticle.author
             article.category = updateDataArticle.category
             article.releaseDate = updateDataArticle.releaseDate
-            article.articleImg = updateDataArticle.articleImg
+            article.articleImgId = updateDataArticle.articleImgId
             article.articleImgUrl = updateDataArticle.articleImgUrl
             article.updatedBy = updateDataArticle.updatedBy
             await article.save()
 
             res.status(200).json({ status: 'Success', message: 'Article updated successfully' })
         } catch (error) {
-            res.status(500).json({ message: 'Internal server error' });
+            res.status(500).json({ message: error.message });
         }
     },
 
     deleteArticleById: async (req, res) => {
         try {
             const articleId = req.params.id
-            const article = await Article.findOne({ _id: articleId})
+            const article = await Article.findOneAndDelete({ _id: articleId})
 
             if (!article) {
                 return res.status(404).json({ message: 'Article not found' })
             }
 
-            const imagePath = `public/uploads/article-images/${article.articleImg}`
-            fs.unlinkSync(imagePath)
-
-            await article.deleteOne()
+            await cloudinary.uploader.destroy(article.articleImgId)
 
             res.status(200).json({ status: 'Success', message: 'Article deleted successfully'})
         } catch (error) {
-            res.status(500).json({ message: 'Internal server error' });
+            res.status(500).json({ message: error.message });
         }
     },
 }

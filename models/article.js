@@ -25,14 +25,14 @@ const articleSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    articleImg: {
+    articleImgId: {
       type: String,
       required: true,
-    },    
+    },
     articleImgUrl: {
       type: String,
       required: true,
-    }, 
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'User'
