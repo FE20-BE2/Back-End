@@ -36,16 +36,16 @@ exports.register = async (req, res) => {
   
   exports.login = async (req, res) => {
     try {
-      const { email, password } = req.body;
+      const { username, email, password } = req.body;
 
-      const user = await userModel.findOne({ email });
+      const user = await userModel.findOne({ username, email });
       if (!user) {
-        return res.status(400).json({ message: 'Invalid email or password' });
+        return res.status(400).json({ message: 'Invalid username, email or password' });
       }
   
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        return res.status(400).json({ message: 'Invalid email or password' });
+        return res.status(400).json({ message: 'Invalid username, email or password' });
       }
   
       const token = jwt.sign({ userId: user._id, role:user.role }, process.env.TOKEN_SECRET);
