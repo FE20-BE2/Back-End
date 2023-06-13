@@ -1,6 +1,5 @@
 const midtransClient = require("midtrans-client");
-
-const Kelas = require('../models/order-kelas');
+const OrderKelas = require('../models/order-kelas');
 
 let coreApi = new midtransClient.CoreApi({
   isProduction : false,
@@ -9,67 +8,58 @@ let coreApi = new midtransClient.CoreApi({
 });
 
 
-
-router.get('/', function(req, res, next) {
-  Kelas.findAll().then(data => {
+exports.getOrderKelas = async function(req, res, next) {
+  try {
+    const data = await OrderKelas.findAll();
     res.json({
       status: true,
       pesan: 'berhasil tampil',
       data: data
     });
-  }).catch(err => {
+  } catch (err) {
     res.json({
       status: false,
-      pesan: 'gagal tampil' + e.message,
+      pesan: 'gagal tampil' + err.message,
       data: []
     });
-  });
-});
+  }
+};
 
-router.post('/charge', function(req,res,next){
+exports.charge = async function(req, res, next) {
+  try {
+    const chargeResponse = await coreApi.charge(req.body);
+    console.log('chargeResponse:', JSON.stringify(chargeResponse));
 
-  coreApi.charge(req.body).then((chargeResponse)=>{
-      console.log('chargeResponse:',JSON.stringify(chargeResponse));
+    const dataOrder = {
+      id: chargeResponse.id,
+      fullName: req.body.fullName,
+      email: req.body.email,
+      noPhone: req.body.noPhone,
+      birthPlace: req.body.birthPlace,
+      birthDate: req.body.birthDate,
+      gender: req.body.gender,
+      school: req.body.school,
+      instagram: req.body.instagram,
+      address: req.body.address,
+      midtransResponse: JSON.stringify(req.body.midtransResponse),
+      userId: req.body.userId
+    };
 
-      const dataOrder = {
-        id: chargeResponse.id,
-        fullName: req.body.fullName,
-        email: req.body.email,
-        noPhone: req.body.noPhone,
-        birthPlace: req.body.birthPlace,
-        birthDate: req.body.birthDate,
-        gender: req.body.gender,
-        school: req.body.school,
-        instagram: req.body.instagram,
-        address: req.body.address,
-        midtransResponse: JSON.stringify(req.body.midtransResponse),
-        userId: req.body.userId
-      };
+    const data = await OrderKelas.create(dataOrder);
+    res.json({
+      status: true,
+      pesan: "Berhasil Order",
+      data: data
+    });
+  } catch (err) {
+    res.json({
+      status: false,
+      pesan: "Gagal Order: " + err.message,
+      data: []
+    });
+  }
+};
 
-      Order.create(dataOrder).then( data=>{
-      res.json({
-        status:true,
-        pesan:"Berhasil Order",
-        data:data
-      });
-      }).catch( err=>{
-        res.json({
-        status: false,
-        pesan: "Gagal Order: " + err.message,
-        data:[]
-      });
-      });
-       
-
-  }).catch((e)=>{
-      res.json({
-        status: false,
-        pesan: 'gagal order' + e.message,
-        data: []
-      });
-  });;
-
-});
 
 
 
