@@ -9,7 +9,9 @@ let snap = new midtransClient.Snap({
 
 exports.getClassOrder = async function(req, res, next) {
   try {
+
     const data = await OrderKelas.findAll();
+    
     res.json({
       status: true,
       pesan: 'berhasil tampil',
@@ -19,12 +21,13 @@ exports.getClassOrder = async function(req, res, next) {
     res.json({
       status: false,
       pesan: 'gagal tampil: ' + err.message,
-      data: []
+      data: [],
+      orderData: []
     });
   }
 };
 
-exports.charge = async function(req, res, next) {
+exports.payment = async function(req, res, next) {
   try {
     const transactionToken = await snap.createTransactionToken(req.body);
 
