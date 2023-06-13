@@ -1,15 +1,17 @@
 const midtransClient = require("midtrans-client");
-const OrderKelas = require('../models/order-kelas');
+const OrderKelas = require('../models/data-user');
 
-let coreApi = new midtransClient.CoreApi({
+let snap = new midtransClient.Snap({
   isProduction: false,
   serverKey: 'SB-Mid-server-YNLQZcrYZ0xDlFVP5AB_OUdD',
   clientKey: 'SB-Mid-client-7GzpI7ovEK7EqsKa'
 });
 
-exports.getOrderKelas = async function(req, res, next) {
+exports.getClassOrder = async function(req, res, next) {
   try {
+
     const data = await OrderKelas.findAll();
+    
     res.json({
       status: true,
       pesan: 'berhasil tampil',
@@ -19,18 +21,17 @@ exports.getOrderKelas = async function(req, res, next) {
     res.json({
       status: false,
       pesan: 'gagal tampil: ' + err.message,
-      data: []
+      data: [],
+      orderData: []
     });
   }
 };
 
-exports.charge = async function(req, res, next) {
+exports.payment = async function(req, res, next) {
   try {
-    const chargeResponse = await coreApi.charge(req.body);
-    console.log('chargeResponse:', JSON.stringify(chargeResponse));
+    const transactionToken = await snap.createTransactionToken(req.body);
 
     const dataOrder = {
-      id: chargeResponse.id,
       fullName: req.body.fullName,
       email: req.body.email,
       noPhone: req.body.noPhone,
@@ -40,14 +41,22 @@ exports.charge = async function(req, res, next) {
       school: req.body.school,
       instagram: req.body.instagram,
       address: req.body.address,
-      midtransResponse: JSON.stringify(chargeResponse),
-      userId: req.body.userId
+      userId: req.body.userId,
+      motivation: req.body.motivation,
+      portfolioFile: req.body.portfolioFile,
+      portfolioUrl: req.body.portfolioUrl,
+      transactionToken: transactionToken
     };
+    
 
     const data = await OrderKelas.create(dataOrder);
+
+    console.log("Transaction Token:", transactionToken);
+
     res.json({
       status: true,
       pesan: "Berhasil Order",
+      token: transactionToken,
       data: data
     });
   } catch (err) {

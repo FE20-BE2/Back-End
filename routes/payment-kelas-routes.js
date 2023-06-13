@@ -4,12 +4,12 @@ require('dotenv').config();
 const router = express.Router();
 
 const { 
-    getOrderKelas,
-    charge
+    getClassOrder,
+    payment
 } = require('../controllers/payment-controller');
 
 
-router.post('/api/order', getOrderKelas);
-router.post('/api/order/charge', charge);
+router.get('/api/order', getClassOrder);
+router.post('/api/order/payment', payment);
 
 module.exports = router;
