@@ -1,7 +1,8 @@
 const express = require('express');
 const auth = require('../middleware/verify-token');
+const upload = require('../middleware/multer');
 require('dotenv').config();
-
+ 
 const router = express.Router();
 
 
@@ -13,7 +14,7 @@ const {
 } = require('../controllers/mentor-kelas-controller');
 
 
-router.post('/api/mentor',  auth, createMentor);
+router.post('/api/mentor',  auth,  upload.single('mentorImg'),  createMentor);
 
 router.get('/api/mentor',  auth, getAllMentors);
 
