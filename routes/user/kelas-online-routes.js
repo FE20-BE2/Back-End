@@ -5,7 +5,7 @@ const router = express.Router();
 
 const { 
   getClasses
-} = require('../controllers/Kelas-Online-controller');
+} = require('../../controllers/Kelas-Online-controller');
 
 
 router.get('/api/user/kelas-online', getClasses);
