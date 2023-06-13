@@ -38,7 +38,7 @@ const dataUserSchema = new mongoose.Schema({
         required: true,
     },
     midtransResponse: {
-        type: Text
+        type: String
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, 
