@@ -10,7 +10,7 @@ let snap = new midtransClient.Snap({
 exports.getClassOrder = async function(req, res, next) {
   try {
 
-    const data = await OrderKelas.findALL();
+    const data = await OrderKelas.find();
     
     res.json({
       status: true,
