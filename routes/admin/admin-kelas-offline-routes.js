@@ -1,5 +1,5 @@
 const express = require('express');
-const auth = require('../middleware/verify-token');
+const auth = require('../../middleware/verify-token');
 require('dotenv').config();
 
 const router = express.Router();
@@ -10,7 +10,7 @@ const {
   getClassById,
   updateClassById,
   deleteClassById 
-} = require('../controllers/Kelas-Offline-controller');
+} = require('../../controllers/Kelas-Offline-controller');
 
 router.post('/api/admin-kelas-offline', auth, createOfflineClass);
 

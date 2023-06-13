@@ -5,7 +5,7 @@ const router = express.Router();
 
 const { 
   getClasses
-} = require('../controllers/Kelas-Offline-controller');
+} = require('../../controllers/Kelas-Offline-controller');
 
 
 router.get('/api/user/kelas-offline', getClasses);
