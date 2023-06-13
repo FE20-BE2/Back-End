@@ -1,5 +1,5 @@
 const dataUserSchema = require('../models/data-user')
-const fs = require('fs')
+const cloudinary = require('../config/cloudinary')
 
 module.exports = {
     getUserData: async (req, res) => {
@@ -21,6 +21,10 @@ module.exports = {
 
     addUserData: async (req, res) => {
         try {
+            const portfolioUser = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'remedial-app/portfolio-users',
+            });
+
             const data = {
                 fullName: req.body.fullName,
                 email: req.body.email,
@@ -32,9 +36,8 @@ module.exports = {
                 instagram: req.body.instagram,
                 address: req.body.address,
                 motivation: req.body.motivation,
-                portfolioFile: req.file.filename,
-                portfolioUrl: `${req.protocol}://${req.get('host')}/uploads/portfolio-user/${req.file.filename}`,
-                portfolio: req.body.portfolio,
+                portfolioFile: portfolioUser.public_id,
+                portfolioUrl: portfolioUser.secure_url,
                 userId: req.user.userId
             }
 
@@ -57,8 +60,11 @@ module.exports = {
                 return res.status(404).json({ message: 'Data user not found' })
             }
 
-            const portfolioPath = `public/uploads/portfolio-user/${dataUser.portfolioFile}`
-            fs.unlinkSync(portfolioPath)
+            await cloudinary.uploader.destroy(dataUser.portfolioFile);
+
+            const portfolioUser = await cloudinary.uploader.upload(req.file.path, {
+                folder: 'remedial-app/portfolio-users',
+            });
 
             const updateData = {
                 fullName: req.body.fullName,
@@ -71,9 +77,8 @@ module.exports = {
                 instagram: req.body.instagram,
                 address: req.body.address,
                 motivation: req.body.motivation,
-                portfolioFile: req.file.filename,
-                portfolioUrl: `${req.protocol}://${req.get('host')}/uploads/portfolio-user/${req.file.filename}`,
-                portfolio: req.body.portfolio,
+                portfolioFile: portfolioUser.public_id,
+                portfolioUrl: portfolioUser.secure_url,
                 userId: req.user.userId
             }
 
