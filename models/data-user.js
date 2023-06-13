@@ -38,16 +38,13 @@ const dataUserSchema = new mongoose.Schema({
         required: true,
     }, 
     motivation: {
-        type: String,
-        required: true,
+        type: String
     },
     portfolioFile: {
-        type: String,
-        required: true,
+        type: String
     },
     portfolioUrl: {
-      type: String,
-      required: true,
+      type: String
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, 
