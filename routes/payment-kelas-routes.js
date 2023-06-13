@@ -9,7 +9,7 @@ const {
 } = require('../controllers/payment-controller');
 
 
-router.post('/api/mentor', getOrderKelas);
-router.post('/order/charge', charge);
+router.post('/api/order', getOrderKelas);
+router.post('/api/order/charge', charge);
 
 module.exports = router;

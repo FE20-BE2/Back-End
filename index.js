@@ -9,6 +9,7 @@ const kelasOfflineRoutes = require('./routes/kelas-offline-routes')
 const adminOfflineRoutes = require('./routes/admin-kelas-offline-routes')
 const adminOnlineRoutes = require('./routes/admin-kelas-online-routes')
 const mentorRouter = require('./routes/mentor-kelas-routers')
+const paymentRouter = require('./routes/payment-kelas-routes')
 
 require('dotenv').config();
 
@@ -30,6 +31,7 @@ app.use(kelasOnlineRoutes);
 app.use(kelasOfflineRoutes);
 app.use(adminOfflineRoutes);
 app.use(adminOnlineRoutes);
+app.use(paymentRouter);
 
 app.listen(process.env.PORT || 3030, "0.0.0.0", () => {
   console.log('Server berjalan pada port 3030');

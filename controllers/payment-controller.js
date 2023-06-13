@@ -2,11 +2,10 @@ const midtransClient = require("midtrans-client");
 const OrderKelas = require('../models/order-kelas');
 
 let coreApi = new midtransClient.CoreApi({
-  isProduction : false,
-  serverKey : 'SB-Mid-client-7GzpI7ovEK7EqsKa',
-  clientKey : 'SB-Mid-server-YNLQZcrYZ0xDlFVP5AB_OUdD'
+  isProduction: false,
+  serverKey: 'SB-Mid-server-YNLQZcrYZ0xDlFVP5AB_OUdD',
+  clientKey: 'SB-Mid-client-7GzpI7ovEK7EqsKa'
 });
-
 
 exports.getOrderKelas = async function(req, res, next) {
   try {
@@ -19,7 +18,7 @@ exports.getOrderKelas = async function(req, res, next) {
   } catch (err) {
     res.json({
       status: false,
-      pesan: 'gagal tampil' + err.message,
+      pesan: 'gagal tampil: ' + err.message,
       data: []
     });
   }
@@ -41,7 +40,7 @@ exports.charge = async function(req, res, next) {
       school: req.body.school,
       instagram: req.body.instagram,
       address: req.body.address,
-      midtransResponse: JSON.stringify(req.body.midtransResponse),
+      midtransResponse: JSON.stringify(chargeResponse),
       userId: req.body.userId
     };
 
@@ -59,8 +58,3 @@ exports.charge = async function(req, res, next) {
     });
   }
 };
-
-
-
-
-
