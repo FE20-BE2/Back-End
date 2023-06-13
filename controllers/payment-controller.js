@@ -1,5 +1,5 @@
 const midtransClient = require("midtrans-client");
-const OrderKelas = require('../models/data-user');
+const OrderKelas = require('../models/order-kelas');
 
 let snap = new midtransClient.Snap({
   isProduction: false,
@@ -10,7 +10,7 @@ let snap = new midtransClient.Snap({
 exports.getClassOrder = async function(req, res, next) {
   try {
 
-    const data = await OrderKelas.findAll();
+    const data = await OrderKelas.findALL();
     
     res.json({
       status: true,
