@@ -22,36 +22,6 @@ exports.getClassOrder = async function(req, res, next) {
   }
 };
 
-exports.orderKelas = async function(req,res,next){
-  try {
-    const portfolioUser = await cloudinary.uploader.upload(req.file.path, {
-      folder: 'remedial-app/portfolio-users',
-  });
-
-    const orderKelas = new DataOrderKelas({
-      fullName: req.body.fullName,
-      email: req.body.email,
-      noPhone: req.body.noPhone,
-      birthPlace: req.body.birthPlace,
-      birthDate: req.body.birthDate,
-      gender: req.body.gender,
-      school: req.body.school,
-      instagram: req.body.instagram,
-      address: req.body.address,
-      motivation: req.body.motivation,
-      portfolioFile: portfolioUser.public_id,
-      portfolioUrl: portfolioUser.secure_url,
-      userId: req.user.userId
-    });
-
-    await orderKelas.save();
-
-    res.status(200).json({ message: 'Berhasil mendaftar kelas' });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
 exports.payment = async function(req, res, next) {
 
   const { body } = req;
