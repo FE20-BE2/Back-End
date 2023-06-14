@@ -30,6 +30,10 @@ exports.payment = async function(req, res, next) {
   });
 
   try {
+    const portfolioUser = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'remedial-app/portfolio-users',
+  });
+
     const transactionToken = await snap.createTransactionToken(req.body);
 
     const dataOrder = {
@@ -44,8 +48,8 @@ exports.payment = async function(req, res, next) {
       address: req.body.address,
       userId: req.body.userId,
       motivation: req.body.motivation,
-      portfolioFile: req.body.portfolioFile,
-      portfolioUrl: req.body.portfolioUrl,
+      portfolioFile: portfolioUser.public_id,
+      portfolioUrl:portfolioUser.secure_url,
       transactionToken: transactionToken
     };
     
