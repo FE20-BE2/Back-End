@@ -25,8 +25,8 @@ exports.payment = async function(req, res, next) {
 
   let snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey: 'SB-Mid-server-YNLQZcrYZ0xDlFVP5AB_OUdD',
-    clientKey: 'SB-Mid-client-7GzpI7ovEK7EqsKa'
+    serverKey : 'YOUR_SERVER_KEY',
+    clientKey : 'YOUR_CLIENT_KEY'
   });
 
   try {
