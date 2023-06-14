@@ -19,7 +19,8 @@ const kelasSchema = new mongoose.Schema({
     },
     mentor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Mentor'
+      ref: 'Mentor',
+      required: true
     },
     createdAt: {
       type: Date,

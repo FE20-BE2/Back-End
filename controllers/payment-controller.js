@@ -1,12 +1,6 @@
 const midtransClient = require("midtrans-client");
 const OrderKelas = require('../models/order-kelas');
 
-let snap = new midtransClient.Snap({
-  isProduction: false,
-  serverKey: 'SB-Mid-server-YNLQZcrYZ0xDlFVP5AB_OUdD',
-  clientKey: 'SB-Mid-client-7GzpI7ovEK7EqsKa'
-});
-
 exports.getClassOrder = async function(req, res, next) {
   try {
 
@@ -28,6 +22,13 @@ exports.getClassOrder = async function(req, res, next) {
 };
 
 exports.payment = async function(req, res, next) {
+
+  let snap = new midtransClient.Snap({
+    isProduction: false,
+    serverKey : 'YOUR_SERVER_KEY',
+    clientKey : 'YOUR_CLIENT_KEY'
+  });
+
   try {
     const transactionToken = await snap.createTransactionToken(req.body);
 
@@ -51,14 +52,15 @@ exports.payment = async function(req, res, next) {
 
     const data = await OrderKelas.create(dataOrder);
 
-    console.log("Transaction Token:", transactionToken);
-
     res.json({
       status: true,
       pesan: "Berhasil Order",
       token: transactionToken,
       data: data
     });
+
+    return { token: transactionToken.token };
+
   } catch (err) {
     res.json({
       status: false,
@@ -66,4 +68,6 @@ exports.payment = async function(req, res, next) {
       data: []
     });
   }
+
+
 };
