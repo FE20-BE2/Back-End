@@ -25,15 +25,11 @@ exports.payment = async function(req, res, next) {
 
   let snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey : 'YOUR_SERVER_KEY',
-    clientKey : 'YOUR_CLIENT_KEY'
+    serverKey : 'YOUR_SERVER_KEY'
   });
 
   try {
-    const portfolioUser = await cloudinary.uploader.upload(req.file.path, {
-      folder: 'remedial-app/portfolio-users',
-  });
-
+  
     const transactionToken = await snap.createTransactionToken(req.body);
 
     const dataOrder = {
@@ -46,11 +42,7 @@ exports.payment = async function(req, res, next) {
       school: req.body.school,
       instagram: req.body.instagram,
       address: req.body.address,
-      userId: req.body.userId,
       motivation: req.body.motivation,
-      portfolioFile: portfolioUser.public_id,
-      portfolioUrl:portfolioUser.secure_url,
-      transactionToken: transactionToken
     };
     
 
