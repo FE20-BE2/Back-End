@@ -8,8 +8,8 @@ const kelasOnlineRoutes = require('./routes/user/kelas-online-routes')
 const kelasOfflineRoutes = require('./routes/user/kelas-offline-routes')
 const adminOfflineRoutes = require('./routes/admin/admin-kelas-offline-routes')
 const adminOnlineRoutes = require('./routes/admin/admin-kelas-online-routes')
-const mentorRouter = require('./routes/mentor-kelas-routers')
-const paymentRouter = require('./routes/payment-kelas-routes')
+const mentorRouter = require('./routes/admin/mentor-kelas-routers')
+const paymentRouter = require('./routes/user/payment-kelas-routes')
 
 require('dotenv').config();
 

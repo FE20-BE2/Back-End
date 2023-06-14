@@ -25,10 +25,12 @@ const kelasSchema = new mongoose.Schema({
     createdAt: {
       type: Date,
       default: Date.now,
+      ref: 'User'
     },
     updatedAt: {
       type: Date,
       default: Date.now,
+      ref: 'User'
     },
   }
 );
