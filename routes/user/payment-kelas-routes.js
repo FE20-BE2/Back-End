@@ -1,7 +1,6 @@
 const express = require('express');
 const auth = require('../../middleware/verify-token');
 const authorizeAdmin = require('../../middleware/authorize-admin')
-const upload = require('../../middleware/multer');
 require('dotenv').config();
 
 const router = express.Router();
@@ -13,7 +12,7 @@ const {
 
 
 router.get('/api/order', auth, authorizeAdmin, getClassOrder);
-router.post('/api/order/payment', auth, upload.single('portfolioFile'), payment);
+router.post('/api/order/payment', auth, payment);
 
 module.exports = router;
  
