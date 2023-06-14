@@ -18,7 +18,7 @@ const {
 
 router.post('/api/mentor',  auth, authorizeAdmin, upload.single('mentorImg'), createMentor);
 
-router.post('/api/mentor',  auth, authorizeAdmin, upload.single('mentorImg'), updateMentor);
+router.update('/api/mentor/update',  auth, authorizeAdmin, upload.single('mentorImg'), updateMentor);
 
 router.get('/api/mentor',  auth, authorizeAdmin, getAllMentors);
 
