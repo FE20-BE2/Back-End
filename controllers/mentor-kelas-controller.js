@@ -26,10 +26,9 @@ exports.createMentor = async function (req, res) {
 
 exports.updateMentor = async function (req, res) {
   try {
-    const { mentorId } = req.params;
     const { nama, spesialisasi, email } = req.body;
 
-    const mentor = await Mentor.findById(mentorId);
+    const mentor = await Mentor.findById(req.params.id);
     if (!mentor) {
       return res.status(404).json({ message: 'Mentor not found' });
     }
