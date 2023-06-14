@@ -25,7 +25,7 @@ exports.payment = async function(req, res, next) {
 
   let snap = new midtransClient.Snap({
     isProduction: false,
-    serverKey : 'YOUR_SERVER_KEY'
+    serverKey : 'SB-Mid-server-YNLQZcrYZ0xDlFVP5AB_OUdD'
   });
 
   try {
@@ -55,8 +55,6 @@ exports.payment = async function(req, res, next) {
       data: data
     });
 
-    return { token: transactionToken.token };
-
   } catch (err) {
     res.json({
       status: false,
@@ -64,6 +62,4 @@ exports.payment = async function(req, res, next) {
       data: []
     });
   }
-
-
 };
