@@ -12,7 +12,7 @@ const {
 } = require('../../controllers/payment-controller');
 
 
-router.get('/api/order', auth, authorizeAdmin, upload.single('portfolioFile'), getClassOrder);
+router.get('/api/order', auth, authorizeAdmin, getClassOrder);
 router.post('/api/order/payment', auth, upload.single('portfolioFile'), payment);
 
 module.exports = router;

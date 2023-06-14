@@ -9,13 +9,16 @@ const router = express.Router();
 
 const { 
     createMentor,
+    updateMentor,
     getAllMentors,
     getMentorById,
     deleteMentor
 } = require('../../controllers/mentor-kelas-controller');
 
 
-router.post('/api/mentor',  auth, authorizeAdmin, upload.single('mentorImg'),  createMentor);
+router.post('/api/mentor',  auth, authorizeAdmin, upload.single('mentorImg'), createMentor);
+
+router.put('/api/mentor/:id',  auth, authorizeAdmin, upload.single('mentorImg'), updateMentor);
 
 router.get('/api/mentor',  auth, authorizeAdmin, getAllMentors);
 

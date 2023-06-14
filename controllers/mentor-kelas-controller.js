@@ -24,6 +24,34 @@ exports.createMentor = async function (req, res) {
   }
 };
 
+exports.updateMentor = async function (req, res) {
+  try {
+    const { nama, spesialisasi, email } = req.body;
+
+    const mentor = await Mentor.findById(req.params.id);
+    if (!mentor) {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
+
+    if (req.file) {
+      const uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+        folder: 'remedial-app/mentors',
+      });
+      mentor.photo = uploadedImage.secure_url;
+    }
+
+    mentor.nama = nama;
+    mentor.spesialisasi = spesialisasi;
+    mentor.email = email;
+    const updatedMentor = await mentor.save();
+
+    res.json({ message: 'Mentor updated successfully', data: updatedMentor });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 exports.getAllMentors = async function (req, res) {
   try {
     const mentors = await Mentor.find();
