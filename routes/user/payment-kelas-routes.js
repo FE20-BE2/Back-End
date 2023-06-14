@@ -8,12 +8,14 @@ const router = express.Router();
 
 const { 
     getClassOrder,
-    payment
+    payment,
+    orderKelas
 } = require('../../controllers/payment-controller');
 
 
 router.get('/api/order', auth, authorizeAdmin, getClassOrder);
-router.post('/api/order/payment', auth, upload.single('portfolioFile'), payment);
+router.post('/api/order/payment', auth, payment);
+router.post('/api/order-kelas', auth, upload.single('portfolioFile'), orderKelas)
 
 module.exports = router;
  
