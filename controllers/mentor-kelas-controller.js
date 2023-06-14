@@ -1,9 +1,22 @@
 const Mentor = require('../models/mentor-kelas');
+const cloudinary = require('../config/cloudinary')
 
 exports.createMentor = async function (req, res) {
   try {
-    const { nama, spesialisasi } = req.body;
-    const mentor = new Mentor({ nama, spesialisasi, email, photo });
+    const { nama, spesialisasi, email } = req.body;
+    const uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'remedial-app/mentors',
+    });
+    
+    const mentor = new Mentor({ 
+      nama, 
+      spesialisasi, 
+      email, 
+      photo: uploadedImage.secure_url
+    
+    });
+
+
     const createdMentor = await mentor.save();
     res.status(201).json({ message: 'Mentor created successfully', data: createdMentor });
   } catch (error) {
