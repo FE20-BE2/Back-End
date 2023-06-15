@@ -1,6 +1,56 @@
 const midtransClient = require("midtrans-client");
 const OrderKelas = require('../models/order-kelas');
+const cloudinary = require('../config/cloudinary')
 const uuid = require("uuid");
+
+exports.createClassOrder = async (req, res) => {
+  try {
+      const userId = req.user.userId;
+
+      const dataUser = await OrderKelas.findOne({ userId });
+
+      if (!dataUser) {
+          return res.status(404).json({ message: 'Data user not found' });
+      }
+
+      await cloudinary.uploader.destroy(dataUser.portfolioFile);
+
+      const portfolioUser = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'remedial-app/portfolio-users',
+      });
+
+      const updateData = {
+          fullName: req.body.fullName,
+          email: req.body.email,
+          noPhone: req.body.noPhone,
+          birthPlace: req.body.birthPlace,
+          birthDate: req.body.birthDate,
+          gender: req.body.gender,
+          school: req.body.school,
+          instagram: req.body.instagram,
+          address: req.body.address,
+          motivation: req.body.motivation,
+          portfolioFile: portfolioUser.public_id,
+          portfolioUrl: portfolioUser.secure_url,
+          userId: req.user.userId
+      };
+
+      const updatedUserData = await OrderKelas.findOneAndUpdate(
+          { userId },
+          updateData,
+          { new: true }
+      );
+
+      if (!updatedUserData) {
+          return res.status(404).json({ error: 'Data user not found.' });
+      }
+
+      res.status(200).json({ status: 'Success', message: 'Data user updated successfully' });
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+};
+
 
 exports.getClassOrder = async function(req, res, next) {
   try {
