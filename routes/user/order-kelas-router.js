@@ -5,9 +5,9 @@ const upload = require('../../middleware/multer');
 const router = express.Router()
 
 const {
-    addUserData
-} = require('../../controllers/data-user-controller')
+    createClassOrder
+} = require('../../controllers/payment-controller')
 
-router.post('/api/order-kelas', authenticateUser, upload.single('portfolioFile'), addUserData)
+router.post('/api/order-kelas', authenticateUser, upload.single('portfolioFile'), createClassOrder)
 
 module.exports = router
