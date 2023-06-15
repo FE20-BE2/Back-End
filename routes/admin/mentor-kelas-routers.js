@@ -20,7 +20,7 @@ router.post('/api/mentor',  auth, authorizeAdmin, upload.single('mentorImg'), cr
 
 router.put('/api/mentor/:id',  auth, authorizeAdmin, upload.single('mentorImg'), updateMentor);
 
-router.get('/api/mentor',  auth, authorizeAdmin, getAllMentors);
+router.get('/api/mentor',  getAllMentors);
 
 router.get('/api/mentor/:id',  auth, authorizeAdmin, getMentorById);
 
