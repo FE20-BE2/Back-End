@@ -1,5 +1,8 @@
 # REMEDIAL 
 
+# Entity Relationship Diagram (ERD)
+![ERD-RemedialApp](https://github.com/FE20-BE2/Back-End/assets/86075019/2a207ff9-d1d7-44c3-aa08-23958a2aaa6b)
+
 # API Documentation
 
 ## Create User
