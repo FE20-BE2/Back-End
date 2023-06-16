@@ -73,37 +73,51 @@ exports.getClassOrder = async function(req, res, next) {
 };
 
 exports.payment = async function(req, res, next) {
+  try {
+    const { body } = req;
 
-  const { body } = req;
+    let snap = new midtransClient.Snap({
+      isProduction: false,
+      serverKey: 'SB-Mid-server-9rzsQI5YO0ZarUcJloumxYyq'
+    });
 
-  let snap = new midtransClient.Snap({
-    isProduction: false,
-    serverKey : 'SB-Mid-server-9rzsQI5YO0ZarUcJloumxYyq'
-  });
-  
-  let parameter = {
-    transaction_details: {
-      order_id: uuid.v4(),
-      gross_amount: body.harga,
-    },
-    credit_card: {
-      secure: true,
-    }, 
-    customer_details: {
-      fullName: "Haqil",
-      email: "Haqil@example.com",
-      noPhone: "1234567890",
-      birthPlace: "Cianjur",
-      birthDate: "2002-01-01T00:00:00.000Z",
-      gender: "male",
-      school: "SMAN 1 COIMAS",
-      instagram: "@haqiljosh",
-      address: "Dramaga",
-      motivation: "I am motivated to succeed in my chosen field."
-    },
-  };
+    let parameter = {
+      transaction_details: {
+        order_id: uuid.v4(),
+        gross_amount: body.harga,
+      },
+      credit_card: {
+        secure: true,
+      },
+      customer_details: {
+        full_name: "Haqil",
+        email: "Haqil@example.com",
+        phone: "1234567890",
+        birthplace: "Cianjur",
+        birthdate: "2002-01-01",
+        gender: "male",
+        school: "SMAN 1 COIMAS",
+        instagram_username: "@haqiljosh",
+        address: "Dramaga",
+        motivation: "I am motivated to succeed in my chosen field."
+      },
+    };
 
-  const transactionToken = await snap.createTransactionToken(parameter);
+    const transactionToken = await snap.createTransactionToken(parameter);
+    console.log("Transaction Token:", transactionToken);
 
-  return { token: transactionToken.token };
+    res.json({
+      status: true,
+      pesan: "Berhasil Order",
+      token: transactionToken.token
+    });
+  } catch (err) {
+    console.error(err);
+    res.json({
+      status: false,
+      pesan: "Gagal Order: " + err.message,
+      data: []
+    });
+  }
 };
+
